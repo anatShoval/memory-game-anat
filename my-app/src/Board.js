@@ -5,12 +5,11 @@ import Card from './Card';
 export default class Board extends React.Component { 
 
     renderCard(cardValue, cardLine) {
-      const idName = "card" + cardLine
-      const value = this.props.cards[cardValue]
+      const idName = "card" + cardValue
       return (
         <Card
           id = {idName}
-          value = {this.props.cards[cardValue]}
+          value = {cardValue}
           onClick = {() => this.props.onClick(cardValue)}
           cardPic = "./backCard.png"
         />
@@ -34,11 +33,12 @@ export default class Board extends React.Component {
     for (let i = 0; i < contentCards.length; i++) {
       for(let j = 0; j < 2; j++){
         let x = Math.floor((Math.random() * (num*num)) + 1);
-        while(True){
+        let continueRandom = true
+        while(continueRandom == true){
           if(numList[x-1] == x){
             contentCards[i][j] = x;
             numList[x-1] = "";
-            break;
+            continueRandom = false;
           }
           else{
             x = Math.floor((Math.random() * (num*num)) + 1);
@@ -48,14 +48,14 @@ export default class Board extends React.Component {
     }
 
     const itemList = ["❤", "☻", "♛", "✪", "☼", "✡", "ツ", "⌛", "☯", "⚔", "✎", "☎", "✄", "♫", "♁", "❣", "☠", "♂"]
-    let arrayCard = new Array[num*num];
+    let arrayCard = new Array(num*num);
     let createDiv = [];
     for(let i=0; i<contentCards.length; i++){
       for(let j = 0; j < 2; j++){
         
         arrayCard[contentCards[i][j]] = this.renderCard(itemList[i], i+j);
         if(i+j%6==0){
-          reateDiv.push(React.createElement('dir', {className:'board-row'}, ...arrayCard));
+          createDiv.push(React.createElement('dir', {className:'board-row'}, ...arrayCard));
         }
       }
     }

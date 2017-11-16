@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import Boad from './Board';
+import Board from './Board';
 import './App.css';
 
 
@@ -11,6 +11,9 @@ class App extends Component {
       numCards: 6,
       stepNumber: 0,
       xIsNext: true,
+      history: [{
+        cards: Array(6*6).fill(null),
+      }],
     };
   }
   render() {
@@ -27,7 +30,7 @@ class App extends Component {
           </ul>
 
           <Board
-              cards={current.cards}
+              cards={this.cards}
               onClick={(i) => this.handleClick(i)}
               numCards={this.state.numCards}
             />
