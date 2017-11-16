@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import Boad from './Board';
 import './App.css';
 
 
@@ -7,7 +8,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      numCards: 6,
+      stepNumber: 0,
+      xIsNext: true,
     };
   }
   render() {
@@ -22,6 +25,12 @@ class App extends Component {
             <li>step 3: choose size of board at startg</li>
             <li>step 4 (bonus): undo</li>
           </ul>
+
+          <Board
+              cards={current.cards}
+              onClick={(i) => this.handleClick(i)}
+              numCards={this.state.numCards}
+            />
       </div>
     );
   }
