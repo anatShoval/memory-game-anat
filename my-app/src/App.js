@@ -25,17 +25,17 @@ class App extends Component {
     let myCards = this.state.cards
     //myCards[i] = value;
     let newSelCards = !this.state.selectedCards[0] ? [i,this.state.selectedCards[1]] : !this.state.selectedCards[1] ? [this.state.selectedCards[0], i] : [i,null];
-
-    
-    
-
+    this.setState({
+      selectedCards: newSelCards,
+    })
+    /*
     this.setState({
       history: history.concat([{
         cards: cards,
       }]),
       stepNumber: history.length,
       selectedCards: newSelCards,
-    });
+    });*/
   }
 
   render() {
