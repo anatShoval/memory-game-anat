@@ -5,69 +5,72 @@ import Card from './Card';
 export default class Board extends React.Component { 
 
     renderCard(cardValue, cardLine) {
-      const idName = "card" + cardValue
+      const idName = "card" + cardLine;
+      const x = this.props.cards[cardLine]
+      const value = (x===null) ? cardValue : this.props.cards[cardLine]
+      const selectedCards = this.props.selectedCards
+      const mySelected = this.props.selectedCards
+
+      const sl = (mySelected===undefined) ? "closedCard" : (mySelected[0]==cardLine || mySelected[1]==cardLine) ? "openCard" : "closedCard";
       return (
         <Card
           id = {idName}
-          value = {cardValue}
-          onClick = {() => this.props.onClick(cardValue)}
-          cardPic = "./backCard.png"
+          value = {value}
+          onClick = {() => this.props.onClick(cardLine, cardValue)}
+          className = {sl}
         />
       );
     }
   
    objectCard(num){
-    //let contentCards = [(num*num)/2];
-    let contentCards = new Array((num*num)/2);
-    let valCard = 0;
+    
+    let numList = Array.from(new Array(num*num), (x,i) => i+1)
+    console.log(numList);
 
-    for (let i = 0; i < contentCards.length; i++) {
-      contentCards[i] = new Array(2);
-    }
-
-    let numList = [];
-    for (var i = 1; i <= num*num; i++) {
-        numList.push(i);
-    }
-
-    for (let i = 0; i < contentCards.length; i++) {
-      for(let j = 0; j < 2; j++){
-        let x = Math.floor((Math.random() * (num*num)) + 1);
-        let continueRandom = true
-        while(continueRandom == true){
-          if(numList[x-1] == x){
-            contentCards[i][j] = x;
-            numList[x-1] = "";
-            continueRandom = false;
+    let contentCards = Array.from(new Array((num*num)/2), (x,i) => {
+      let continueRandom = true
+      x = Math.floor((Math.random() * (num*num)) + 1);
+      i = Math.floor((Math.random() * (num*num)) + 1);
+      while(continueRandom === true){
+        if(numList[x-1] === x){
+          numList[x-1] = "";
+          while(continueRandom === true){
+            if(numList[i-1] === i){
+              numList[i-1] = "";
+              continueRandom = false;
+            }
+            else{
+              i = Math.floor((Math.random() * (num*num)) + 1);
+            }
           }
-          else{
-            x = Math.floor((Math.random() * (num*num)) + 1);
-          }
-        } 
-      }
-    }
-
-    const itemList = ["❤", "☻", "♛", "✪", "☼", "✡", "ツ", "⌛", "☯", "⚔", "✎", "☎", "✄", "♫", "♁", "❣", "☠", "♂"]
-    let arrayCard = new Array(num*num);
-    let createDiv = [];
-    for(let i=0; i<contentCards.length; i++){
-      for(let j = 0; j < 2; j++){
-        
-        arrayCard[contentCards[i][j]] = this.renderCard(itemList[i], i+j);
-        if(i+j%6==0){
-          createDiv.push(React.createElement('dir', {className:'board-row'}, ...arrayCard));
+        }
+        else{
+          x = Math.floor((Math.random() * (num*num)) + 1);
         }
       }
-    }
-    return React.createElement('dir', null, ...contentCards);
-    /*for(let i=0; i<num; i++){
-      for(let j=0; j<num; j++){
-        arrayCard.push(this.renderCard(valCard, j));
-        valCard++;
+        return [x,i];
+    });
+
+    console.log(contentCards);
+    const itemList = ["❤", "☻", "♛", "✪", "☼", "✡", "ツ", "⌛", "☯", "⚔", "✎", "☎", "✄", "♫", "♁", "❣", "☠", "♂"]
+    let counter = 0
+    for (const value of contentCards) {
+      for (const step of value){
+        numList[step-1] = itemList[counter]
       }
-      contentCards.push(React.createElement('dir', {className:'board-row'}, ...arrayCard));
+      counter++;
     }
-    return React.createElement('dir', null, ...contentCards);*/
+    console.log(numList);
+    
+    let createDiv = [];
+    counter = 0;
+    for (const value of numList){
+
+      createDiv.push(this.renderCard(value, counter));
+      counter++;
+    }
+    return React.createElement('div', null, ...createDiv);
+    
   }
 
     render() {

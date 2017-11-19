@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Board from './Board';
 import './App.css';
-
 
 class App extends Component {
   constructor(props) {
@@ -10,13 +8,39 @@ class App extends Component {
     this.state = {
       numCards: 6,
       stepNumber: 0,
-      xIsNext: true,
+      selectedCards: [null,null],
+      setClass: "closedCard",
       history: [{
         cards: Array(6*6).fill(null),
       }],
     };
   }
+
+  handleClick(i, value) {
+
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const current = history[history.length - 1];
+    const cards = current.cards.slice();
+    
+    let myCards = this.state.cards
+    //myCards[i] = value;
+    let newSelCards = !this.state.selectedCards[0] ? [i,this.state.selectedCards[1]] : !this.state.selectedCards[1] ? [this.state.selectedCards[0], i] : [i,null];
+
+    
+    
+
+    this.setState({
+      history: history.concat([{
+        cards: cards,
+      }]),
+      stepNumber: history.length,
+      selectedCards: newSelCards,
+    });
+  }
+
   render() {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
     return (
       <div className="App">
         <header className="App-header">
@@ -30,9 +54,11 @@ class App extends Component {
           </ul>
 
           <Board
-              cards={this.cards}
-              onClick={(i) => this.handleClick(i)}
+              cards={current.cards}
+              onClick={(i, value) => this.handleClick(i)}
               numCards={this.state.numCards}
+              setClass = {this.setClass}
+              selectedCards = {this.selectedCards}
             />
       </div>
     );
