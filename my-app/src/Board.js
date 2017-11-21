@@ -32,55 +32,58 @@ export default class Board extends React.Component {
           
       let myCards = this.state.myCardList;
       let myClassNames = this.state.classNames;
-      let myClassName = "closedCard";
-      myClassNames[i] === "closedCard" ? myClassNames[i] = "openCard" : myClassNames[i] = "closedCard"
-      //this.state.selectedCards[0]!=null ? 
-      //myCards[i] = value;
-      let newSelCards = !this.state.selectedCards[0] ? [value+"_"+i,this.state.selectedCards[1]] : !this.state.selectedCards[1] ? [this.state.selectedCards[0], value+"_"+i] : [value+"_"+i,null];
+
+      const setNewState = ((newSelCards, myCards,  myClassNames) => {
+        this.setState({
+          selectedCards: newSelCards,
+          myCardList: myCards,
+          classNames: myClassNames,
+        })
+      });
+
+      var moreThenTowSelected = myClassNames.filter((word) => { return word === "openCard"; });
+      if(moreThenTowSelected.length < 2){
+          if (myClassNames[i] === "closedCard"){
+            myClassNames[i] = "openCard";
+          }
+        
+            let newSelCards = !this.state.selectedCards[0] ? [value+"_"+i,this.state.selectedCards[1]] : (!this.state.selectedCards[1] && this.state.selectedCards[0]!== value+"_"+i) ? [this.state.selectedCards[0], value+"_"+i] : [value+"_"+i,null];
+            
+            const checkPairs = (newSelCards[0]!==newSelCards[1] && (newSelCards[0]) && (newSelCards[1])) ? (newSelCards[0].slice(0, 1) === newSelCards[1].slice(0, 1)) ? true : false : false;
+            
+            setNewState(newSelCards, myCards,  myClassNames)
+
+            if(checkPairs){
+              setTimeout(() => {
+               /* myCards.splice(newSelCards[0].slice(2,),1);
+                myClassNames.splice(newSelCards[0].slice(2,),1);
+                myCards.splice(newSelCards[1].slice(2,),1);
+                myClassNames.splice(newSelCards[1].slice(2,),1);*/
+                
+                myClassNames[newSelCards[0].slice(2,)] = "lockedCard";
+                myClassNames[newSelCards[1].slice(2,)] = "lockedCard";
+                setNewState(newSelCards, myCards,  myClassNames)
+              }, 1000);
       
-      const checkPairs = (newSelCards[0]!=newSelCards[1] && (newSelCards[0]) && (newSelCards[1])) ? (newSelCards[0].slice(0, 1) === newSelCards[1].slice(0, 1)) ? true : false : false;
-      //const indexP = Array.from(new Array(2), (x,i) => ((checkPairs(newSelCards)) ? myCards.findIndex(value) : false));
-
-      setTimeout(() => { 
-        if(checkPairs){
-          myCards.splice(newSelCards[0].slice(2,),1);
-          myClassNames.splice(newSelCards[0].slice(2,),1);
-          myCards.splice(newSelCards[1].slice(2,),1);
-          myClassNames.splice(newSelCards[1].slice(2,),1);
-          //myClassNames = Array(arrayLength*arrayLength).fill("closedCard"),;
-          // myCards[newSelCards[1].slice(2,)] = "";
-        }
-        if ((newSelCards[0]) && (newSelCards[1]) && checkPairs===false){
-          myClassNames[newSelCards[0].slice(2,)] = "closedCard";
-          myClassNames[newSelCards[1].slice(2,)] = "closedCard";
-        }
-        this.setState({
-          selectedCards: newSelCards,
-          myCardList: myCards,
-          classNames: myClassNames,
-        })
-
-        this.setState({
-          selectedCards: newSelCards,
-          myCardList: myCards,
-          classNames: myClassNames,
-        })
-      }, 1000);
-      console.log(newSelCards[0].slice(2)); 
-
-      this.setState({
-        selectedCards: newSelCards,
-        myCardList: myCards,
-        classNames: myClassNames,
-      })
+            }
+            else if ((newSelCards[0]) && (newSelCards[1])){
+              setTimeout(() => {
+                myClassNames[newSelCards[0].slice(2,)] = "closedCard";
+                myClassNames[newSelCards[1].slice(2,)] = "closedCard";
+                
+                setNewState(newSelCards, myCards,  myClassNames)
+              }, 1000);
+            }
+            else{
+              setNewState(newSelCards, myCards,  myClassNames)
+            }
+      }
+      
     }
-
-    
 
    objectCard(num){
     
     let numList = Array.from(new Array(num*num), (x,i) => i+1)
-    console.log(numList);
 
     const myRandom = (num) => Math.floor((Math.random() * (num*num)) + 1);
 
@@ -109,9 +112,6 @@ export default class Board extends React.Component {
           return [x,i];
       });
 
-      
-  
-      console.log(contentCards);
       const itemList = ["❤", "☻", "♛", "✪", "☼", "✡", "ツ", "⌛", "☯", "⚔", "✎", "☎", "✄", "♫", "♁", "❣", "☠", "♂"]
       let counter = 0;
 
@@ -121,7 +121,7 @@ export default class Board extends React.Component {
         }
         counter++;
       }
-      console.log(numList);
+
       this.setState({
         myCardList : numList,
       })
