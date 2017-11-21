@@ -13,7 +13,7 @@ div.boardDiv div > button{
   width: 150px;
   height: 200px;
   margin: 10px;
-  background-image: url(/static/media/backCard.ea6e22eb.png);
+  background-image: url(/images/backCard.png);
   background-size: cover;
 }
 

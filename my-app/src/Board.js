@@ -4,12 +4,11 @@ import Card from './Card';
 
 export default class Board extends React.Component { 
   constructor(props) {
-    const arrayLength = props.numCards
     super(props);
     this.state = {
       selectedCards: [null,null],
       myCardList: [],
-      classNames: Array(arrayLength*arrayLength).fill("closedCard"),
+      classNames: Array(props.numCards*props.numCards).fill("closedCard"),
     };
   }
   
@@ -17,11 +16,6 @@ export default class Board extends React.Component {
       const idName = "card" + cardLine;
       const x = this.props.cards[cardLine]
       const value = (x===null) ? cardValue : this.props.cards[cardLine]
-      
-
-     // const mySelected = this.props.selectedCards
-
-     // const sl = (mySelected===undefined) ? "closedCard" : (mySelected[0]==cardLine || mySelected[1]==cardLine) ? "openCard" : "closedCard";
       return (
         <Card
           id = {idName}
@@ -149,14 +143,11 @@ export default class Board extends React.Component {
   }
 
     render() {
-      const numCards = this.props.numCards;
-      
-      console.log(numCards);
       return (
         <div>
           
           <div className="boardDiv">
-            {this.objectCard(numCards)};
+            {this.objectCard(this.props.numCards)};
           </div>
         </div>
       );
