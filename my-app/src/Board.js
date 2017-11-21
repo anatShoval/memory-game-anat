@@ -25,8 +25,6 @@ export default class Board extends React.Component {
         />
       );
     }
-
-    
     
     handleClick(i, value) {
           
@@ -131,23 +129,27 @@ export default class Board extends React.Component {
       numList = this.state.myCardList
     }
     
+    let createBtn = [];
     let createDiv = [];
     let counter = 0;
     for (const value of numList){
 
-      createDiv.push(this.renderCard(value, counter));
+      createBtn.push(this.renderCard(value, counter));
       counter++;
+      if(counter%this.props.numCards===0){
+        createDiv.push(React.createElement('div', null, ...createBtn));
+        createBtn = [];
+      }
     }
     return React.createElement('div', null, ...createDiv);
     
-  }
+  }sss
 
     render() {
       return (
         <div>
-          
           <div className="boardDiv">
-            {this.objectCard(this.props.numCards)};
+            {this.objectCard(this.props.numCards)}
           </div>
         </div>
       );

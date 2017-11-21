@@ -10,13 +10,21 @@
 }
 
 div.boardDiv div > button{
-  width: 150px;
-  height: 200px;
-  margin: 10px;
-  font-size: 70pt;
+  position: relative;
+  width: 60px;
+  height: 80px;
+  margin: 3px;
   background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: #ffffff00;
+  display: inline;
+  font-size: xx-large;
 }
 
+.boardDiv {
+  background-color: darkgreen;
+}
 
 div.boardDiv div > button.closedCard {
   text-indent: -9999px;
