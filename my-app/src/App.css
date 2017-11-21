@@ -9,20 +9,21 @@
   color: white;
 }
 
-div.boardDiv div > button.closedCard {
+div.boardDiv div > button{
   width: 150px;
   height: 200px;
   margin: 10px;
   background-image: url(/static/media/backCard.ea6e22eb.png);
   background-size: cover;
-  font-size: 70pt;
 }
 
-.button.openCard {
-  width: 150px;
-  height: 200px;
-  margin: 10px;
-  font-size: 100px;
+div.boardDiv div > button.closedCard {
+  font-size: 0pt;
+}
+
+button.openCard {
+  font-size: 63pt;
+  padding-bottom: 70px;
 }
 
 .App-title {
