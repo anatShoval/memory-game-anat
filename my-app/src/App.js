@@ -14,8 +14,6 @@ class App extends Component {
     };
   }
 
-  
-
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
