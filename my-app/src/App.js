@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Board from './Board';
+import Player from './Player';
 import './App.css';
 
 class App extends Component {
@@ -9,23 +10,29 @@ class App extends Component {
       numCards: 6,
       stepNumber: 0,
       numPlayers: 1,
+      player1: "Player1",
+      player2: "Player2",
       history: [{
         cards: Array(6*6).fill(null),
       }],
     };
   }
 
-  singlePlayersHandler = () => {
+  switchNameHandlerP1 = (event) =>{
     this.setState({
-      numCards: this.state.numCards,
-      numPlayers: 1,
+      player1: event.target.value
+    });
+  }
+  switchNameHandlerP2 = (event) =>{
+    this.setState({
+      player2: event.target.value
     });
   }
 
-  multiPlayersHandler = () => {
+  setPlayersHandler = (num) => {
     this.setState({
       numCards: this.state.numCards,
-      numPlayers: 2,
+      numPlayers: num,
     });
   }
 
@@ -46,8 +53,16 @@ class App extends Component {
           </ul>
 
           <h2>"Choose single/two players mode:"</h2>
-          <button onClick= {this.singlePlayersHandler} >Single player mode</button>
-          <button onClick= {this.multiPlayersHandler} >Tow players mode</button>
+          <button onClick= {this.setPlayersHandler.bind(this, 1)} >Single player mode</button>
+          <button onClick= {this.setPlayersHandler.bind(this, 2)} >Tow players mode</button>
+
+          <Player
+            player1={this.state.player1}
+            player2={this.state.player2}
+            numPlayers={this.state.numPlayers}
+            player1Changed={this.switchNameHandlerP1}
+            player2Changed={this.switchNameHandlerP2} 
+          />
 
           <Board
               cards={current.cards}
