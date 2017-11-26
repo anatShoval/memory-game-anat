@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Player from './Player';
+import RadioBtns from './RadioBtns';
 import './App.css';
 
 function IntroductionAndSettings(props) { 
@@ -26,6 +27,10 @@ function IntroductionAndSettings(props) {
             player1Changed={props.switchNameHandlerP1}
             player2Changed={props.switchNameHandlerP2} 
           />
+
+          <RadioBtns
+            onChange={(value) => this.handleOptionChange(value)}
+          />;
 
           <button onClick= {props.startGameHandler} >Start Game</button>
           
