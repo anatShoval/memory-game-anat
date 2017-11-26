@@ -139,9 +139,11 @@ export default class Board extends React.Component {
       counter++;
       if(counter%this.props.numCards===0){
         createDiv.push(React.createElement('div', {className:'cardsRow'}, ...createBtn));
+        createDiv.push(React.createElement('br'))
         createBtn = [];
       }
     }
+    <span>testing<br />testing</span>
     return React.createElement('div', null, ...createDiv);
     
   }sss

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Board from './Board';
 import Player from './Player';
+import IntroductionAndSettings from './IntroductionAndSettings';
 import './App.css';
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
       numCards: 6,
       stepNumber: 0,
       numPlayers: 1,
+      startedGame: false,
       player1: "Player1",
       player2: "Player2",
       history: [{
@@ -36,39 +38,33 @@ class App extends Component {
     });
   }
 
-  render() {
+  startGameHandler = () => {
+    
+    this.setState({
+      startedGame: true,
+    });
+  }
 
+  render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
+
+    const showGameState = this.state.startedGame === false ? <IntroductionAndSettings
+      setPlayersHandler={this.setPlayersHandler}
+      player1={this.state.player1}
+      player2={this.state.player2}
+      numPlayers={this.state.numPlayers}
+      player1Changed={this.switchNameHandlerP1}
+      player2Changed={this.switchNameHandlerP2} 
+      startGameHandler={this.startGameHandler}
+    /> : <Board
+          cards={current.cards}
+          numCards={this.state.numCards}
+          selectedCards = {this.selectedCards}
+        />;
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Memory Game Exercise</h1>
-        </header>
-          <ul className="App-intro">
-            <li>step 1: 6 X 6, one player, rules: if two cards are the same, they disappear.</li>
-            <li>step 2: two players w/scoring.</li>
-            <li>step 3: choose size of board at startg</li>
-            <li>step 4 (bonus): undo</li>
-          </ul>
-
-          <h2>"Choose single/two players mode:"</h2>
-          <button onClick= {this.setPlayersHandler.bind(this, 1)} >Single player mode</button>
-          <button onClick= {this.setPlayersHandler.bind(this, 2)} >Tow players mode</button>
-
-          <Player
-            player1={this.state.player1}
-            player2={this.state.player2}
-            numPlayers={this.state.numPlayers}
-            player1Changed={this.switchNameHandlerP1}
-            player2Changed={this.switchNameHandlerP2} 
-          />
-
-          <Board
-              cards={current.cards}
-              numCards={this.state.numCards}
-              selectedCards = {this.selectedCards}
-            />
+        {showGameState}
       </div>
     );
   }
