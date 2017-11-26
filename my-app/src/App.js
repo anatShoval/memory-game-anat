@@ -8,13 +8,29 @@ class App extends Component {
     this.state = {
       numCards: 6,
       stepNumber: 0,
+      numPlayers: 1,
       history: [{
         cards: Array(6*6).fill(null),
       }],
     };
   }
 
+  singlePlayersHandler = () => {
+    this.setState({
+      numCards: this.state.numCards,
+      numPlayers: 1,
+    });
+  }
+
+  multiPlayersHandler = () => {
+    this.setState({
+      numCards: this.state.numCards,
+      numPlayers: 2,
+    });
+  }
+
   render() {
+
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     return (
@@ -28,6 +44,10 @@ class App extends Component {
             <li>step 3: choose size of board at startg</li>
             <li>step 4 (bonus): undo</li>
           </ul>
+
+          <h2>"Choose single/two players mode:"</h2>
+          <button onClick= {this.singlePlayersHandler} >Single player mode</button>
+          <button onClick= {this.multiPlayersHandler} >Tow players mode</button>
 
           <Board
               cards={current.cards}

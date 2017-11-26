@@ -4,11 +4,12 @@ import Card from './Card';
 
 export default class Board extends React.Component { 
   constructor(props) {
+    const cardNum = props.numCards;
     super(props);
     this.state = {
       selectedCards: [null,null],
       myCardList: [],
-      classNames: Array(props.numCards*props.numCards).fill("closedCard"),
+      classNames: Array(cardNum*cardNum).fill("closedCard"),
     };
   }
   
@@ -137,7 +138,7 @@ export default class Board extends React.Component {
       createBtn.push(this.renderCard(value, counter));
       counter++;
       if(counter%this.props.numCards===0){
-        createDiv.push(React.createElement('div', null, ...createBtn));
+        createDiv.push(React.createElement('div', {className:'cardsRow'}, ...createBtn));
         createBtn = [];
       }
     }
