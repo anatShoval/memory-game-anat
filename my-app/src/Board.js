@@ -143,7 +143,6 @@ export default class Board extends React.Component {
         createBtn = [];
       }
     }
-    <span>testing<br />testing</span>
     return React.createElement('div', null, ...createDiv);
     
   }sss

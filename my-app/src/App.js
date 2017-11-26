@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Board from './Board';
-import Player from './Player';
 import IntroductionAndSettings from './IntroductionAndSettings';
 import './App.css';
-import RadioBtns from './RadioBtns';
+//import RadioBtns from './RadioBtns';
 
 class App extends Component {
   constructor(props) {
@@ -49,7 +48,7 @@ class App extends Component {
   handleOptionChange(value) {
     
     this.setState({
-      numSquares: value,
+      numCards: value,
       history: [{
         cards: Array(value*value).fill(null),
       }],
@@ -69,16 +68,13 @@ class App extends Component {
       player1Changed={this.switchNameHandlerP1}
       player2Changed={this.switchNameHandlerP2} 
       startGameHandler={this.startGameHandler}
-      numCards={this.numCards}
+      numCards={this.state.numCards}
       onChange={(value) => this.handleOptionChange(value)}
     /> : <Board
           cards={current.cards}
           numCards={this.state.numCards}
           selectedCards = {this.selectedCards}
         />;
-        <RadioBtns
-        onChange={(value) => this.handleOptionChange(value)}
-      />;
     return (
       <div className="App">
         {showGameState}

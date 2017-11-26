@@ -1,9 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Player from './Player';
 import RadioBtns from './RadioBtns';
 import './App.css';
 
 function IntroductionAndSettings(props) { 
+  
+  /*renderRadioBtn(valueRadioBtn) {
+    const value = this.props.numCards[valueRadioBtn];
+    return (
+      <RadioBtns
+        value = {valueRadioBtn}
+        onChange={props.onChange(valueRadioBtn)}
+      />
+    );
+  }*/
+  
     return (
       <div>
         <header className="App-header">
@@ -29,8 +40,8 @@ function IntroductionAndSettings(props) {
           />
 
           <RadioBtns
-            onChange={(value) => this.handleOptionChange(value)}
-          />;
+            onChange={(value) => props.onChange(value)}
+          />
 
           <button onClick= {props.startGameHandler} >Start Game</button>
           
