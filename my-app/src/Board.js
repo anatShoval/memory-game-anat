@@ -111,7 +111,7 @@ export default class Board extends React.Component {
           return [x,i];
       });
 
-      const itemList = ["❤", "☻", "♛", "✪", "☼", "✡", "ツ", "⌛", "☯", "⚔", "✎", "☎", "✄", "♫", "♁", "❣", "☠", "♂"]
+      const itemList = ["❤", "☻", "♛", "✪", "☼", "✡", "ツ", "⌛", "☯", "⚔", "✎", "☎", "✄", "♫", "♁", "❣", "☠", "♂", "❂", "⚥", "✌", "⁉", "♒", "☃", "☢", "☂", "♚", "✈", "➳", "∞", "⚜", "❥"]
       let counter = 0;
 
       for (const value of contentCards) {
