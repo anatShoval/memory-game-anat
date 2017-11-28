@@ -15,7 +15,7 @@ class App extends Component {
       player1: "Player1",
       player2: "Player2",
       history: [{
-        cards: Array(6*6).fill(null),
+        cards: [],
       }],
     };
   }
@@ -39,10 +39,48 @@ class App extends Component {
   }
 
   startGameHandler = () => {
-    
-    this.setState({
-      startedGame: true,
+    const num = this.state.numCards;
+    let numList = Array.from(new Array(num*num), (x,i) => i+1)
+    const myRandom = (num) => Math.floor((Math.random() * (num*num)) + 1);
+    let contentCards = Array.from(new Array((num*num)/2), (x,i) => {
+      let continueRandom = true
+      x = myRandom(num);
+      i = myRandom(num);
+      while(continueRandom === true){
+        if(numList[x-1] === x){
+          numList[x-1] = "";
+          while(continueRandom === true){
+            if(numList[i-1] === i){
+              numList[i-1] = "";
+              continueRandom = false;
+            }
+            else{
+              i = myRandom(num);
+            }
+          }
+        }
+        else{
+          x = myRandom(num);
+        }
+      }
+        return [x,i];
     });
+
+    const itemList = ["❤", "☻", "♛", "✪", "☼", "✡", "ツ", "⌛", "☯", "⚔", "✎", "☎", "✄", "♫", "♁", "❣", "☠", "♂", "❂", "⚥", "✌", "⁉", "⌚", "☃", "☢", "☂", "♚", "✈", "➳", "∞", "⚜", "❥"]
+    let counter = 0;
+
+    for (const value of contentCards) {
+      for (const step of value){
+        numList[step-1] = itemList[counter]
+      }
+      counter++;
+    }
+    this.setState({
+      history: [{
+        cards: numList,
+      }],
+      startedGame: true,
+    })
   }
 
   handleOptionChange(value) {
@@ -65,8 +103,8 @@ class App extends Component {
       player1={this.state.player1}
       player2={this.state.player2}
       numPlayers={this.state.numPlayers}
-      player1Changed={this.switchNameHandlerP1}
-      player2Changed={this.switchNameHandlerP2} 
+      player1Changed={(value) => this.switchNameHandlerP1(value)}
+      player2Changed={(value) => this.switchNameHandlerP2(value)} 
       startGameHandler={this.startGameHandler}
       numCards={this.state.numCards}
       onChange={(value) => this.handleOptionChange(value)}
@@ -74,6 +112,9 @@ class App extends Component {
           cards={current.cards}
           numCards={this.state.numCards}
           selectedCards = {this.selectedCards}
+          player1 = {this.state.player1}
+          player2 = {this.state.player2}
+          numPlayers = {this.state.numPlayers}
         />;
     return (
       <div className="App">

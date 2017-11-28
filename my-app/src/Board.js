@@ -5,11 +5,17 @@ import Card from './Card';
 export default class Board extends React.Component { 
   constructor(props) {
     const cardNum = props.numCards;
+    const np = props.numPlayers;
     super(props);
     this.state = {
       selectedCards: [null,null],
-      myCardList: [],
+      myCardList: props.cards,
       classNames: Array(cardNum*cardNum).fill("closedCard"),
+      numPlayers: np,
+      counterMoves: 0,
+      players1Turn:true,
+      players1Collections: 0,
+      players2Collections: 0,
     };
   }
   
@@ -32,11 +38,25 @@ export default class Board extends React.Component {
       let myCards = this.state.myCardList;
       let myClassNames = this.state.classNames;
 
-      const setNewState = ((newSelCards, myCards,  myClassNames) => {
+      const setNewState = ((newSelCards, myCards,  myClassNames, cm, turn, collection) => {
         this.setState({
           selectedCards: newSelCards,
           myCardList: myCards,
           classNames: myClassNames,
+          counterMoves: cm,
+          players1Turn: turn,
+          players1Collections: collection,
+        })
+      });
+
+      const setNewState2 = ((newSelCards, myCards,  myClassNames, cm, turn, collection) => {
+        this.setState({
+          selectedCards: newSelCards,
+          myCardList: myCards,
+          classNames: myClassNames,
+          counterMoves: cm,
+          players1Turn: turn,
+          players2Collections: collection,
         })
       });
 
@@ -50,18 +70,15 @@ export default class Board extends React.Component {
             
             const checkPairs = (newSelCards[0]!==newSelCards[1] && (newSelCards[0]) && (newSelCards[1])) ? (newSelCards[0].slice(0, 1) === newSelCards[1].slice(0, 1)) ? true : false : false;
             
-            setNewState(newSelCards, myCards,  myClassNames)
+            setNewState(newSelCards, myCards,  myClassNames, this.state.counterMoves, this.state.players1Turn, this.state.players1Collections)
 
             if(checkPairs){
               setTimeout(() => {
-               /* myCards.splice(newSelCards[0].slice(2,),1);
-                myClassNames.splice(newSelCards[0].slice(2,),1);
-                myCards.splice(newSelCards[1].slice(2,),1);
-                myClassNames.splice(newSelCards[1].slice(2,),1);*/
-                
                 myClassNames[newSelCards[0].slice(2,)] = "lockedCard";
                 myClassNames[newSelCards[1].slice(2,)] = "lockedCard";
-                setNewState(newSelCards, myCards,  myClassNames)
+                const collection =  this.state.players1Turn ? this.state.players1Collections + 1 : this.state.players2Collections +1;
+                this.state.players1Turn ? setNewState(newSelCards, myCards,  myClassNames, this.state.counterMoves, this.state.players1Turn, collection) :
+                setNewState2(newSelCards, myCards,  myClassNames, this.state.counterMoves, this.state.players1Turn, collection)
               }, 1000);
       
             }
@@ -69,67 +86,20 @@ export default class Board extends React.Component {
               setTimeout(() => {
                 myClassNames[newSelCards[0].slice(2,)] = "closedCard";
                 myClassNames[newSelCards[1].slice(2,)] = "closedCard";
-                
-                setNewState(newSelCards, myCards,  myClassNames)
+                const cm = this.state.counterMoves +1;
+                const turn = this.state.players1Turn ? false : true;
+                setNewState(newSelCards, myCards,  myClassNames, cm, turn, this.state.players1Collections)
               }, 1000);
             }
             else{
-              setNewState(newSelCards, myCards,  myClassNames)
+              setNewState(newSelCards, myCards,  myClassNames, this.state.counterMoves, this.state.players1Turn, this.state.players1Collections)
             }
       }
       
     }
 
-   objectCard(num){
-    
-    let numList = Array.from(new Array(num*num), (x,i) => i+1)
-
-    const myRandom = (num) => Math.floor((Math.random() * (num*num)) + 1);
-
-    if(this.state.myCardList.length===0) {
-      let contentCards = Array.from(new Array((num*num)/2), (x,i) => {
-        let continueRandom = true
-        x = myRandom(num);
-        i = myRandom(num);
-        while(continueRandom === true){
-          if(numList[x-1] === x){
-            numList[x-1] = "";
-            while(continueRandom === true){
-              if(numList[i-1] === i){
-                numList[i-1] = "";
-                continueRandom = false;
-              }
-              else{
-                i = myRandom(num);
-              }
-            }
-          }
-          else{
-            x = myRandom(num);
-          }
-        }
-          return [x,i];
-      });
-
-      const itemList = ["❤", "☻", "♛", "✪", "☼", "✡", "ツ", "⌛", "☯", "⚔", "✎", "☎", "✄", "♫", "♁", "❣", "☠", "♂", "❂", "⚥", "✌", "⁉", "♒", "☃", "☢", "☂", "♚", "✈", "➳", "∞", "⚜", "❥"]
-      let counter = 0;
-
-      for (const value of contentCards) {
-        for (const step of value){
-          numList[step-1] = itemList[counter]
-        }
-        counter++;
-      }
-
-      this.setState({
-        myCardList : numList,
-      })
-    }
-    else
-    {
-      numList = this.state.myCardList
-    }
-    
+   setCard(){
+    const numList = this.state.myCardList;
     let createBtn = [];
     let createDiv = [];
     let counter = 0;
@@ -145,13 +115,26 @@ export default class Board extends React.Component {
     }
     return React.createElement('div', null, ...createDiv);
     
-  }sss
+  }
 
     render() {
+
+      const finAllCards = this.state.classNames.filter(word => word === "closedCard");
+      const numP = finAllCards===this.state.myCardList.length ? this.state.players1Collections > this.state.players1Collections ? this.props.player1 + " is the winer with " + this.state.players1Collections + " cards" :
+      this.state.players1Collections < this.state.players1Collections ? this.props.player2 + " is the winer with " + this.state.players2Collections + " cards" :
+      "Even" :
+      this.props.numPlayers === 1 ? this.props.player1 +", moves are: " + this.state.counterMoves : 
+      this.state.players1Turn===true ? this.props.player1 + "'s turn, collected " + this.state.players1Collections + " cards" : 
+      this.props.player2 + "'s turn, collected " + this.state.players2Collections + " cards";
+      
       return (
         <div>
+          <div>
+            <h1>Memory Game</h1>
+            <p>{numP}</p>
+          </div>
           <div className="boardDiv">
-            {this.objectCard(this.props.numCards)}
+            {this.setCard()}
           </div>
         </div>
       );

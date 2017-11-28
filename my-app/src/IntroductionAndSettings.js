@@ -5,26 +5,16 @@ import './App.css';
 
 function IntroductionAndSettings(props) { 
   
-  /*renderRadioBtn(valueRadioBtn) {
-    const value = this.props.numCards[valueRadioBtn];
-    return (
-      <RadioBtns
-        value = {valueRadioBtn}
-        onChange={props.onChange(valueRadioBtn)}
-      />
-    );
-  }*/
-  
     return (
       <div>
         <header className="App-header">
-          <h1 className="App-title">Memory Game Exercise</h1>
+          <h1 className="App-title">Memory Game</h1>
+          <p>This is a memory game, for singler player or versus a friend.</p>
         </header>
           <ul className="App-intro">
-            <li>step 1: 6 X 6, one player, rules: if two cards are the same, they disappear.</li>
-            <li>step 2: two players w/scoring.</li>
-            <li>step 3: choose size of board at startg</li>
-            <li>step 4 (bonus): undo</li>
+            <li>In this game you need to find pairs of cards that are identical.</li>
+            <li>In a single mode, every try you'll make will be counted therefore your goal will be to find all of the pairs in minimum tries possible.</li>
+            <li>In two players mode, your goal will be to collect more cards then your opponent.</li>
           </ul>
 
           <h2>"Choose single/two players mode:"</h2>
@@ -35,14 +25,15 @@ function IntroductionAndSettings(props) {
             player1={props.player1}
             player2={props.player2}
             numPlayers={props.numPlayers}
-            player1Changed={props.switchNameHandlerP1}
-            player2Changed={props.switchNameHandlerP2} 
+            player1Changed={(value) => props.player1Changed(value)}
+            player2Changed={(value) => props.player2Changed(value)} 
           />
 
           <RadioBtns
             onChange={(value) => props.onChange(value)}
           />
-
+          <br />
+          <br />
           <button onClick= {props.startGameHandler} >Start Game</button>
           
       </div>

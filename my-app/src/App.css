@@ -3,8 +3,8 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #420000;
+  height: 90px;
   padding: 20px;
   color: white;
 }
@@ -20,6 +20,8 @@ div.boardDiv div > button{
   background-color: #ffffff00;
   display: inline;
   font-size: -webkit-xxx-large;
+  text-align: center;
+  padding: 2px;
 }
 
 .boardDiv {
@@ -51,7 +53,8 @@ button.openCard {
 }
 
 .App-intro {
-  font-size: large;
+  font-size: small;
+  list-style-type: none;
 }
 
 @media only screen and (max-width: 420px) {
