@@ -20,12 +20,12 @@ class App extends Component {
     };
   }
 
-  switchNameHandlerP1 = (event) =>{
+  switchNameHandlerP1 = (event) => {
     this.setState({
       player1: event.target.value
     });
   }
-  switchNameHandlerP2 = (event) =>{
+  switchNameHandlerP2 = (event) => {
     this.setState({
       player2: event.target.value
     });
@@ -83,7 +83,7 @@ class App extends Component {
     })
   }
 
-  handleOptionChange(value) {
+  handleOptionChange = (value) => {
     
     this.setState({
       numCards: value,
@@ -94,11 +94,22 @@ class App extends Component {
     });
   }
 
+  restartGameHandler = () => {
+    this.setState({
+      startedGame: false,
+      history: [{
+        cards: Array(this.state.numCards*this.state.numCards).fill(null),
+      }],
+      stepNumber: 0,
+    });
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
 
-    const showGameState = this.state.startedGame === false ? <IntroductionAndSettings
+    const showGameState = this.state.startedGame === false ? 
+    <IntroductionAndSettings
       setPlayersHandler={this.setPlayersHandler}
       player1={this.state.player1}
       player2={this.state.player2}
@@ -107,15 +118,15 @@ class App extends Component {
       player2Changed={(value) => this.switchNameHandlerP2(value)} 
       startGameHandler={this.startGameHandler}
       numCards={this.state.numCards}
-      onChange={(value) => this.handleOptionChange(value)}
-    /> : <Board
-          cards={current.cards}
-          numCards={this.state.numCards}
-          selectedCards = {this.selectedCards}
-          player1 = {this.state.player1}
-          player2 = {this.state.player2}
-          numPlayers = {this.state.numPlayers}
-        />;
+      onChange={(value) => this.handleOptionChange(value)}/> : 
+      <Board
+        cards={current.cards}
+        numCards={this.state.numCards}
+        selectedCards = {this.selectedCards}
+        player1 = {this.state.player1}
+        player2 = {this.state.player2}
+        numPlayers = {this.state.numPlayers}
+        restartGameHandler = {this.restartGameHandler}/>;
     return (
       <div className="App">
         {showGameState}

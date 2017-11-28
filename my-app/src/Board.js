@@ -98,7 +98,7 @@ export default class Board extends React.Component {
       
     }
 
-   setCard(){
+   setCard=()=>{
     const numList = this.state.myCardList;
     let createBtn = [];
     let createDiv = [];
@@ -117,15 +117,20 @@ export default class Board extends React.Component {
     
   }
 
+  
+  restartGame=()=>{
+    const finAllCards = this.state.classNames.filter(word => word === "lockedCard").length;
+    if(finAllCards===this.state.myCardList.length){return <button className="restartBtn" onClick= {this.props.restartGameHandler} >New game</button>};
+  }
     render() {
 
-      const finAllCards = this.state.classNames.filter(word => word === "closedCard");
-      const numP = finAllCards===this.state.myCardList.length ? this.state.players1Collections > this.state.players1Collections ? this.props.player1 + " is the winer with " + this.state.players1Collections + " cards" :
-      this.state.players1Collections < this.state.players1Collections ? this.props.player2 + " is the winer with " + this.state.players2Collections + " cards" :
-      "Even" :
-      this.props.numPlayers === 1 ? this.props.player1 +", moves are: " + this.state.counterMoves : 
+      const finAllCards = this.state.classNames.filter(word => word === "lockedCard").length;
+      const numP = (this.state.numPlayers===2 ? finAllCards===this.state.myCardList.length ? this.state.players1Collections > this.state.players2Collections ? this.props.player1 + " is the winer with " + this.state.players1Collections + " cards" :
+      this.state.players1Collections < this.state.players2Collections ? this.props.player2 + " is the winer with " + this.state.players2Collections + " cards pairs" :
+      "Even" : 
       this.state.players1Turn===true ? this.props.player1 + "'s turn, collected " + this.state.players1Collections + " cards" : 
-      this.props.player2 + "'s turn, collected " + this.state.players2Collections + " cards";
+      this.props.player2 + "'s turn, collected " + this.state.players2Collections + " cards" : 
+      this.props.player1 +", moves are: " + this.state.counterMoves);
       
       return (
         <div>
@@ -135,6 +140,7 @@ export default class Board extends React.Component {
           </div>
           <div className="boardDiv">
             {this.setCard()}
+            {this.restartGame()}
           </div>
         </div>
       );
