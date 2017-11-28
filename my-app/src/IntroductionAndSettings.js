@@ -18,8 +18,8 @@ function IntroductionAndSettings(props) {
           </ul>
 
           <h2>"Choose single/two players mode:"</h2>
-          <button onClick= {props.setPlayersHandler.bind(props, 1)} >Single player mode</button>
-          <button onClick= {props.setPlayersHandler.bind(props, 2)} >Tow players mode</button>
+          <button className="defaultBtn" onClick= {props.setPlayersHandler.bind(props, 1)} >Single player mode</button>
+          <button className="defaultBtn" onClick= {props.setPlayersHandler.bind(props, 2)} >Tow players mode</button>
 
           <Player
             player1={props.player1}
@@ -33,9 +33,12 @@ function IntroductionAndSettings(props) {
             onChange={(value) => props.onChange(value)}
           />
           <br />
-          <br />
-          <button onClick= {props.startGameHandler} >Start Game</button>
           
+          <button className="defaultBtn" onClick= {props.startGameHandler} >Start Game</button>
+          <br />
+          <br />
+          <br />
+          <br />
       </div>
     );
 }

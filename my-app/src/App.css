@@ -60,6 +60,21 @@ button.openCard {
 .restartBtn{
   position: absolute;
   top: 40%;
+  border-color: #ffeeba;
+  background-color: #ffffff;
+  color: #420000;
+  border-radius: 20px;
+  width: 150px;
+  margin-left: -77px;
+}
+
+.defaultBtn{
+  border-color: #ffeeba;
+  background-color: #420000;
+  color: white;
+  border-radius: 20px;
+  width: 150px;
+  margin: 5px;
 }
 
 @media only screen and (max-width: 420px) {
