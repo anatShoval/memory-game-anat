@@ -102,22 +102,105 @@ button.openCard {
 }
 
 img.playersPic {
-  width: 100px;
+  width: 125px;
   margin-bottom: -52px;
   position: absolute;
-  top: 35px;
-  margin-left: -218px;
+  top: 21px;
+  margin-left: -296px;
 }
 
 img.playersPic2 {
-  width: 42px;
+  width: 54px;
   margin-bottom: -17px;
   position: absolute;
-  top: 60px;
-  margin-left: 160px;
+  top: 50px;
+  margin-left: 213px;
 }
 
-@media only screen and (max-width: 420px) {
+
+img#raccoonPic {
+  width: 128px;
+  position: absolute;
+  left: 0px;
+  top: 10px;
+  visibility: 0.5;
+}
+
+img#foxPic {
+  width: 133px;
+  position: absolute;
+  right: 8px;
+  top: 10px;
+}
+
+@media only screen and (max-width: 2000px) {
+  img#raccoonPic {
+    width: 128px;
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    visibility: 0.5;
+  }
+  
+  img#foxPic {
+    width: 133px;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+  }
+}
+
+
+@media only screen and (max-width: 1000px) {
+  img#foxPic {
+    width: 76px;
+    position: absolute;
+    right: 29px;
+    top: 10px;
+  }
+    img#raccoonPic {
+      width: 97px;
+      position: absolute;
+      left: 0px;
+      top: 7px;
+  }
+}  
+
+
+@media only screen and (max-width: 800px) {
+  h1 { font-size: larger; }
+  
+  div.boardDiv div > button {
+    position: relative;
+    width: 45px;
+    height: 60px;
+    margin: 3px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: #ffffff00;
+    display: inline;
+    font-size: x-large;
+  }
+
+  img.playersPic {
+    width: 80px;
+    position: absolute;
+    top: 17px;
+    margin-left: -223px;
+  }
+
+  img.playersPic2 {
+    width: 36px;
+    position: absolute;
+    top: 32px;
+    margin-left: 164px;
+  }
+
+  p { font-size: small; }
+}
+
+@media only screen and (max-width: 630px) {
   div.boardDiv div > button {
     position: relative;
     width: 37px;
@@ -130,9 +213,23 @@ img.playersPic2 {
     display: inline;
     font-size: x-large;
   }
+
+  img.playersPic {
+    width: 57px;
+    position: absolute;
+    top: 33px;
+    margin-left: -180px;
+  }
+
+  img.playersPic2 {
+    width: 28px;
+    position: absolute;
+    top: 42px;
+    margin-left: 138px;
+  }
 }
 
-@media only screen and (max-width: 320px){
+@media only screen and (max-width: 530px){
   div.boardDiv div > button {  
     position: relative;
     width: 30px;
@@ -144,6 +241,54 @@ img.playersPic2 {
     background-color: #ffffff00;
     display: inline;
     font-size: large;
+  }
+
+  img.playersPic {
+    width: 57px;
+    position: absolute;
+    top: 33px;
+    margin-left: -147px;
+  }
+
+  img.playersPic2 {
+    width: 28px;
+    position: absolute;
+    top: 42px;
+    margin-left: 107px;
+  }
+}
+
+
+@media only screen and (max-width: 430px){
+  h1 { font-size: small; }
+
+  p { font-size: x-small; }
+
+  div.boardDiv div > button {  
+    position: relative;
+    width: 24px;
+    height: 32px;
+    margin: 2px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: #ffffff00;
+    display: inline;
+    font-size: large;
+  }
+
+  img.playersPic {
+    width: 57px;
+    position: absolute;
+    top: 12px;
+    margin-left: -124px;
+  }
+
+  img.playersPic2 {
+    width: 29px;
+    position: absolute;
+    top: 20px;
+    margin-left: 86px;
   }
 }
 

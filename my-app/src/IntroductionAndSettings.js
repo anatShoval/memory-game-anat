@@ -10,6 +10,9 @@ function IntroductionAndSettings(props) {
         <header className="App-header">
           <h1 className="App-title">Memory Game</h1>
           <p>This is a memory game, for singler player or versus a friend.</p>
+          <img id="raccoonPic" src={require('./images/raccoon2.png')}/>
+          <img id="foxPic" src={require('./images/adorable.png')}/>
+
         </header>
           <ul className="App-intro">
             <li>In this game you need to find pairs of cards that are identical.</li>
