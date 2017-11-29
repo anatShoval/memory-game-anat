@@ -4,7 +4,7 @@
 
 .App-header {
   background-color: #420000;
-  height: 90px;
+  height: 20%;
   padding: 20px;
   color: white;
 }
@@ -40,12 +40,11 @@ div.boardDiv div > button.lockedCard {
 
 .cardsRow{
   display: inline-flex;
+  background-color: darkgreen;
 }
 
 button.openCard {
   background-image: url(images/backCardEmpty.png);
-  /*font-size: 63pt;
-  padding-bottom: 70px;*/
 }
 
 .App-title {
@@ -55,6 +54,7 @@ button.openCard {
 .App-intro {
   font-size: small;
   list-style-type: none;
+  margin-right: 45px;
 }
 
 .restartBtn{
@@ -66,6 +66,18 @@ button.openCard {
   border-radius: 20px;
   width: 150px;
   margin-left: -77px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.restartBtn:hover{
+  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px);
+}
+
+.restartBtn:active{
+  box-shadow: none;
+  transform: translateY(0);
 }
 
 .defaultBtn{
@@ -75,6 +87,18 @@ button.openCard {
   border-radius: 20px;
   width: 150px;
   margin: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.defaultBtn:hover {
+  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px);
+}
+
+.defaultBtn:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
 
 @media only screen and (max-width: 420px) {
