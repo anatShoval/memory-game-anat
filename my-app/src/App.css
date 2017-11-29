@@ -101,6 +101,22 @@ button.openCard {
   transform: translateY(0);
 }
 
+img.playersPic {
+  width: 100px;
+  margin-bottom: -52px;
+  position: absolute;
+  top: 35px;
+  margin-left: -218px;
+}
+
+img.playersPic2 {
+  width: 42px;
+  margin-bottom: -17px;
+  position: absolute;
+  top: 60px;
+  margin-left: 160px;
+}
+
 @media only screen and (max-width: 420px) {
   div.boardDiv div > button {
     position: relative;

@@ -124,6 +124,10 @@ export default class Board extends React.Component {
   }
     render() {
 
+      const playerPic = this.state.numPlayers===2 ? this.state.players1Turn===true ? 
+      <img className="playersPic" src= {require('./images/raccoon.svg')}/> : <img className="playersPic2" src={require('./images/fox.svg')}/> :
+      <img className="playersPic" src= {require('./images/raccoon.svg')}/>
+
       const finAllCards = this.state.classNames.filter(word => word === "lockedCard").length;
       const numP = (this.state.numPlayers===2 ? finAllCards===this.state.myCardList.length ? this.state.players1Collections > this.state.players2Collections ? this.props.player1 + " is the winer with " + this.state.players1Collections + " cards" :
       this.state.players1Collections < this.state.players2Collections ? this.props.player2 + " is the winer with " + this.state.players2Collections + " cards pairs" :
@@ -136,6 +140,7 @@ export default class Board extends React.Component {
         <div>
           <div>
             <h1>Memory Game</h1>
+            {playerPic}
             <p>{numP}</p>
           </div>
           <div className="boardDiv">
