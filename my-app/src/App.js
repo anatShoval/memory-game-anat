@@ -96,6 +96,7 @@ class App extends Component {
 
   restartGameHandler = () => {
     this.setState({
+      numCards: 6,
       startedGame: false,
       history: [{
         cards: Array(this.state.numCards*this.state.numCards).fill(null),
