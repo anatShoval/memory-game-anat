@@ -14,7 +14,7 @@
 .headdingGame {
   background-image: url(images/meadow-162154.svg);
   padding: 1px;
-  background-repeat-y: no-repeat;
+  background-repeat: repeat-x;
   background-size: 200px;
   background-position: bottom;
   height: 150px;
@@ -31,14 +31,15 @@ div.boardDiv div > button{
   border: none;
   background-color: #ffffff00;
   display: inline;
-  font-size: -webkit-xxx-large;
+  font-size: 2.5em;
   text-align: center;
   padding: 2px;
 }
 
 .boardDiv {
-  background-color: #479029;
+  background-color: #ffffff;
   height: -webkit-fill-available;
+  margin: 10px auto;
 }
 
 div.boardDiv div > button.closedCard {
@@ -53,7 +54,7 @@ div.boardDiv div > button.lockedCard {
 
 .cardsRow{
   display: inline-flex;
-  background-color: #479029;
+  background-color: #ffffff;
 }
 
 button.openCard {
@@ -74,8 +75,8 @@ button.openCard {
   position: absolute;
   top: 40%;
   border-color: #ffeeba;
-  background-color: #ffffff;
-  color: #420000;
+  background-color: #420000;
+  color: white;
   border-radius: 20px;
   width: 150px;
   margin-left: -77px;

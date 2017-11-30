@@ -123,12 +123,23 @@ export default class Board extends React.Component {
     if(finAllCards===this.state.myCardList.length){return <button className="restartBtn" onClick= {this.props.restartGameHandler} >New game</button>};
   }
     render() {
-
-      const playerPic = this.state.numPlayers===2 ? this.state.players1Turn===true ? 
-      <img className="playersPic" src= {require('./images/raccoon.svg')}/> : <img className="playersPic2" src={require('./images/fox.svg')}/> :
+      const finAllCards = this.state.classNames.filter(word => word === "lockedCard").length;
+      
+      const playerPic = this.state.numPlayers===2 ? finAllCards===this.state.myCardList.length ? 
+      this.state.players1Collections > this.state.players2Collections ? 
+      <img className="playersPic" src= {require('./images/raccoon.svg')}/> :
+      this.state.players1Collections < this.state.players2Collections ? 
+      <img className="playersPic2" src={require('./images/fox.svg')}/> :
+      <div>
+        <img className="playersPic" src= {require('./images/raccoon.svg')}/>
+        <img className="playersPic2" src={require('./images/fox.svg')}/>
+      </div> : 
+      this.state.players1Turn===true ? 
+      <img className="playersPic" src= {require('./images/raccoon.svg')}/> : 
+      <img className="playersPic2" src={require('./images/fox.svg')}/> :
       <img className="playersPic" src= {require('./images/raccoon.svg')}/>
 
-      const finAllCards = this.state.classNames.filter(word => word === "lockedCard").length;
+      
       const numP = (this.state.numPlayers===2 ? finAllCards===this.state.myCardList.length ? this.state.players1Collections > this.state.players2Collections ? this.props.player1 + " is the winer with " + this.state.players1Collections + " cards" :
       this.state.players1Collections < this.state.players2Collections ? this.props.player2 + " is the winer with " + this.state.players2Collections + " cards pairs" :
       "Even" : 
