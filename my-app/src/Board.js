@@ -138,7 +138,7 @@ export default class Board extends React.Component {
       
       return (
         <div>
-          <div>
+          <div className="headdingGame">
             <h1>Memory Game</h1>
             {playerPic}
             <p>{numP}</p>

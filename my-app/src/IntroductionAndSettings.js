@@ -20,7 +20,7 @@ function IntroductionAndSettings(props) {
             <li>In two players mode, your goal will be to collect more cards then your opponent.</li>
           </ul>
 
-          <h2>"Choose single/two players mode:"</h2>
+          <h2>Choose single/two players mode:</h2>
           <button className="defaultBtn" onClick= {props.setPlayersHandler.bind(props, 1)} >Single player mode</button>
           <button className="defaultBtn" onClick= {props.setPlayersHandler.bind(props, 2)} >Tow players mode</button>
 
