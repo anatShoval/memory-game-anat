@@ -124,7 +124,7 @@ export default class Board extends React.Component {
   }
     render() {
       const finAllCards = this.state.classNames.filter(word => word === "lockedCard").length;
-      
+
       const playerPic = this.state.numPlayers===2 ? finAllCards===this.state.myCardList.length ? 
       this.state.players1Collections > this.state.players2Collections ? 
       <img className="playersPic" src= {require('./images/raccoon.svg')}/> :
@@ -158,6 +158,7 @@ export default class Board extends React.Component {
             {this.setCard()}
             {this.restartGame()}
           </div>
+          {playerPic}
         </div>
       );
     }

@@ -1,5 +1,9 @@
+/*------------כללי לכולם-----------*/
+@import url(//fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+
 .App {
   text-align: center;
+  font-family: 'Open Sans Hebrew';
 }
 
 .App-header {
@@ -11,14 +15,17 @@
   background-image: url(images/landscape.png);
 }
 
+h2{
+  font-weight: 300;
+}
+
 .headdingGame {
-  background-image: url(images/meadow-162154.svg);
   padding: 1px;
   background-repeat: repeat-x;
   background-size: 200px;
   background-position: bottom;
-  height: 150px;
-  background-color: #cff5ff;
+  height: 95px;
+  background-color: #a8dde0;
 }
 
 div.boardDiv div > button{
@@ -37,9 +44,12 @@ div.boardDiv div > button{
 }
 
 .boardDiv {
-  background-color: #ffffff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 28px 10px;
+  margin-top: -3px;
+  background-image: url(images/landscape-152502.svg);
   height: -webkit-fill-available;
-  margin: 10px auto;
 }
 
 div.boardDiv div > button.closedCard {
@@ -54,7 +64,6 @@ div.boardDiv div > button.lockedCard {
 
 .cardsRow{
   display: inline-flex;
-  background-color: #ffffff;
 }
 
 button.openCard {
@@ -69,6 +78,7 @@ button.openCard {
   font-size: small;
   list-style-type: none;
   margin-right: 45px;
+  font-weight: lighter;
 }
 
 .restartBtn{
@@ -79,6 +89,7 @@ button.openCard {
   color: white;
   border-radius: 20px;
   width: 150px;
+  height: 30px;
   margin-left: -77px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
   transition: box-shadow 0.2s ease-in-out;
@@ -100,6 +111,7 @@ button.openCard {
   color: white;
   border-radius: 20px;
   width: 150px;
+  height: 30px;
   margin: 5px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
   transition: box-shadow 0.2s ease-in-out;
@@ -116,18 +128,26 @@ button.openCard {
 }
 
 img.playersPic {
-  width: 194px;
+  /*width: 194px;
   margin-bottom: -52px;
   position: absolute;
   top: 45px;
-  margin-left: -334px;
+  margin-left: -334px;*/
+  width: 400px;
+  position: absolute;
+  margin-top: -410px;
+  left: -118px;
 }
 
 img.playersPic2 {
-  width: 88px;
+  /*width: 88px;
   position: absolute;
   top: 75px;
-  margin-left: 213px;
+  margin-left: 213px;*/
+  width: 176px;
+  position: absolute;
+  margin-top: -350px;
+  right: -17px;
 }
 
 
@@ -136,6 +156,10 @@ img#raccoonPic {
   position: absolute;
   left: 0px;
   top: 10px;
+}
+
+.headdingGame h1 {
+  color: #430507;
 }
 
 img#foxPic {
@@ -189,6 +213,8 @@ img#foxPic {
     position: absolute;
     top: 23px;
     margin-left: -241px;
+    left: unset;
+    margin-top: unset;
   }
 
   img.playersPic2 {
@@ -196,13 +222,19 @@ img#foxPic {
     position: absolute;
     top: 39px;
     margin-left: 164px;
+    right: unset;
+    margin-top: unset;
   }
 
   p { font-size: small; }
 
   .headdingGame {
-    height: 107px;
+    padding: 1px;
+    background-size: 200px;
+    background-position: bottom;
+    height: 56px;
   }
+
 }
 
 @media only screen and (max-width: 630px) {
@@ -316,7 +348,7 @@ img#foxPic {
     margin-left: 80px;
   }
   .headdingGame {
-    height: 89px;
+    height: 39px;
   }
 }
 
