@@ -11,7 +11,7 @@ function IntroductionAndSettings(props) {
           <h1 className="App-title">Memory Game</h1>
           <p>This is a memory game, for singler player or versus a friend.</p>
           <img id="raccoonPic" src={require('./images/raccoon2.png')}/>
-          <img id="foxPic" src={require('./images/adorable.png')}/>
+          <img id="foxPic" src={require('./images/adorable2.png')}/>
 
         </header>
           <ul className="App-intro">

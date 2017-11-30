@@ -3,10 +3,12 @@
 }
 
 .App-header {
-  background-color: #420000;
-  height: 20%;
+  background-color: #ffffff;
+  background-size: cover;
+  background-position: center;
   padding: 20px;
-  color: white;
+  color: #420000;
+  background-image: url(images/landscape.png);
 }
 
 div.boardDiv div > button{
@@ -119,53 +121,65 @@ img.playersPic2 {
 
 
 img#raccoonPic {
-  width: 128px;
+  width: 131px;
   position: absolute;
   left: 0px;
   top: 10px;
-  visibility: 0.5;
 }
 
 img#foxPic {
-  width: 133px;
+  width: 139px;
   position: absolute;
-  right: 8px;
-  top: 10px;
-}
+  right: 0px;
+  top: 7px;
+} 
 
-@media only screen and (max-width: 2000px) {
+@media only screen and (max-width: 1000px) {
   img#raccoonPic {
-    width: 128px;
+    width: 131px;
     position: absolute;
     left: 0px;
     top: 10px;
-    visibility: 0.5;
   }
   
   img#foxPic {
-    width: 133px;
+    width: 139px;
     position: absolute;
-    right: 8px;
-    top: 10px;
+    right: 0px;
+    top: 7px;
+  } 
+  h1.App-title {
+    font-size: x-large;
+  }
+
+  .App-header p {
+    font-size: small;
   }
 }
 
-
-@media only screen and (max-width: 1000px) {
-  img#foxPic {
-    width: 76px;
+@media only screen and (max-width: 800px) {
+  img#raccoonPic {
+    width: 69px;
     position: absolute;
-    right: 29px;
+    left: 0px;
     top: 10px;
   }
-    img#raccoonPic {
-      width: 97px;
-      position: absolute;
-      left: 0px;
-      top: 7px;
+  
+  img#foxPic {
+    width: 70px;
+    position: absolute;
+    right: 0px;
+    top: 7px;
   }
-}  
 
+  h1.App-title {
+    font-size: large;
+  }
+
+  .App-header p {
+    font-size: xx-small;
+  }
+}
 
 @media only screen and (max-width: 800px) {
   h1 { font-size: larger; }
