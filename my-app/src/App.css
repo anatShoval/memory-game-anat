@@ -12,7 +12,7 @@
 }
 
 .headdingGame {
-  background-image: url(/static/media/meadow-162154.0164d8a5.svg);
+  background-image: url(images/meadow-162154.svg);
   padding: 1px;
   background-repeat-y: no-repeat;
   background-size: 200px;
@@ -115,11 +115,11 @@ button.openCard {
 }
 
 img.playersPic {
-  width: 125px;
+  width: 194px;
   margin-bottom: -52px;
   position: absolute;
   top: 45px;
-  margin-left: -296px;
+  margin-left: -334px;
 }
 
 img.playersPic2 {
@@ -184,10 +184,10 @@ img#foxPic {
   }
 
   img.playersPic {
-    width: 80px;
+    width: 119px;
     position: absolute;
-    top: 17px;
-    margin-left: -223px;
+    top: 23px;
+    margin-left: -241px;
   }
 
   img.playersPic2 {
@@ -219,10 +219,10 @@ img#foxPic {
   }
 
   img.playersPic {
-    width: 57px;
+    width: 90px;
     position: absolute;
     top: 33px;
-    margin-left: -180px;
+    margin-left: -200px;
   }
 
   img.playersPic2 {
@@ -270,10 +270,10 @@ img#foxPic {
   }
 
   img.playersPic {
-    width: 57px;
+    width: 90px;
     position: absolute;
     top: 33px;
-    margin-left: -147px;
+    margin-left: -173px;
   }
 
   img.playersPic2 {
@@ -302,10 +302,10 @@ img#foxPic {
   }
 
   img.playersPic {
-    width: 57px;
+    width: 80px;
     position: absolute;
-    top: 12px;
-    margin-left: -124px;
+    top: 18px;
+    margin-left: -141px;
   }
 
   img.playersPic2 {
