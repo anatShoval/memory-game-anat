@@ -41,6 +41,7 @@ div.boardDiv div > button{
   font-size: 2.5em;
   text-align: center;
   padding: 2px;
+  z-index: 2;
 }
 
 .boardDiv {
@@ -133,10 +134,11 @@ img.playersPic {
   position: absolute;
   top: 45px;
   margin-left: -334px;*/
-  width: 400px;
+  width: 886px;
   position: absolute;
-  margin-top: -410px;
-  left: -118px;
+  margin-top: -690px;
+  left: -265px;
+  z-index: 0;
 }
 
 img.playersPic2 {
@@ -144,10 +146,11 @@ img.playersPic2 {
   position: absolute;
   top: 75px;
   margin-left: 213px;*/
-  width: 176px;
+  width: 391px;
   position: absolute;
-  margin-top: -350px;
+  margin-top: -548px;
   right: -17px;
+  z-index: 0;
 }
 
 
@@ -169,6 +172,31 @@ img#foxPic {
   top: 7px;
 } 
 
+@media only screen and (max-width: 1300px) {
+  img.playersPic {
+    width: 676px;
+    margin-top: -606px;
+    left: -189px;
+  }
+  img.playersPic2 {
+    width: 300px;
+    margin-top: -490px;
+    right: -13px;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  img.playersPic {
+    width: 569px;
+    margin-top: -555px;
+    left: -166px;
+  }
+  img.playersPic2 {
+    width: 251px;
+    margin-top: -458px;
+    right: -13px;
+  }
+}
 @media only screen and (max-width: 1000px) {
   img#raccoonPic {
     width: 131px;
